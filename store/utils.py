@@ -3,7 +3,6 @@ from .models import *
 
 def cookieCart(request):
 
-	#Create empty cart for now for non-logged in user
 	try:
 		cart = json.loads(request.COOKIES['cart'])
 	except:
@@ -15,9 +14,8 @@ def cookieCart(request):
 	cartItems = order['get_cart_items']
 
 	for i in cart:
-		#We use try block to prevent items in cart that may have been removed from causing error
-		try:	
-			if(cart[i]['quantity']>0): #items with negative quantity = lot of freebies  
+		try:
+			if(cart[i]['quantity']>0): #items with negative quantity = lot of freebies
 				cartItems += cart[i]['quantity']
 
 				product = Product.objects.get(id=i)
@@ -28,7 +26,7 @@ def cookieCart(request):
 
 				item = {
 				'id':product.id,
-				'product':{'id':product.id,'name':product.name, 'price':product.price, 
+				'product':{'id':product.id,'name':product.name, 'price':product.price,
 				'imageURL':product.imageURL}, 'quantity':cart[i]['quantity'],
 				'digital':product.digital,'get_total':total,
 				}
@@ -38,7 +36,7 @@ def cookieCart(request):
 					order['shipping'] = True
 		except:
 			pass
-			
+
 	return {'cartItems':cartItems ,'order':order, 'items':items}
 
 def cartData(request):
@@ -55,7 +53,7 @@ def cartData(request):
 
 	return {'cartItems':cartItems ,'order':order, 'items':items}
 
-	
+
 def guestOrder(request, data):
 	name = data['form']['name']
 	email = data['form']['email']

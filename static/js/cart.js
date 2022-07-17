@@ -25,13 +25,14 @@ function updateUserOrder(productId, action){
 			headers:{
 				'Content-Type':'application/json',
 				'X-CSRFToken':csrftoken,
-			}, 
+			},
 			body:JSON.stringify({'productId':productId, 'action':action})
 		})
 		.then((response) => {
 		   return response.json();
 		})
 		.then((data) => {
+			console.log('data', data)
 		    location.reload()
 		});
 }
@@ -58,6 +59,6 @@ function addCookieItem(productId, action){
 	}
 	console.log('CART:', cart)
 	document.cookie ='cart=' + JSON.stringify(cart) + ";domain=;path=/"
-	
+
 	location.reload()
 }
