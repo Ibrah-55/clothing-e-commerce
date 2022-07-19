@@ -1,20 +1,68 @@
 {% extends 'store/main.html' %}
 {% load static %}
 {% block content %}
+<style>
+	.topnav {
+  background-color: #333;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+</style>
+<div class="topnav">
+  <a class="active" href="/store">Top Picks</a>
+  <a href="/woman">Woman</a>
+    <a href="/man">Man</a>
+  <a href="#news">Casual</a>
+  <a href="#news">Dress</a>
+  <a href="/shoes">Shoes</a>
+  <a href="#news">Socks</a>
+  <a href="#news">Wedding</a>
+  <a href="#news">Black</a>
+  <a href="#news">Suits</a>
+  <a href="#news">Jeans</a>
+  <a href="#news">White</a>
+    <a href="#news">Shirts</a>
+
+</div>
+
 	<div class="row">
+
 	{% for product in products %}
 		<div class="col-lg-4">
+
 			<img class="thumbnail" src="{{product.imageURL}}">
 			<div class="box-element product">
 				<h6><strong>{{product.name}}</strong></h6>
 				<hr>
 
-				<button data-product={{product.id}} data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
-	<a  class="btn btn-outline-success" href="#"> View</a>
+				<button data-product={{product.id}} data-action="add" class="btn btn-outline-secondary add-btn update-cart"style="background-color: aquamarine">Add to Cart</button>
 				<h4 style="display: inline-block; float: right">${{product.price|floatformat:2}}</h4>
 
 			</div>
+
 			</div>
 			{% endfor %}
+
 		</div>
 {% endblock content %}

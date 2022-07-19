@@ -99,7 +99,21 @@ function myFunction() {
 	    		<img  id="cart-icon" src="{% static 'images/cart.png' %}">
 	    	</a>
 	    	<p id="cart-total">{{cartItems}}</p>
+ <ul class="navbar-nav mr-auto">
+      {% if user.is_authenticated %}
 
+      <li class="nav-item">
+        <a class="nav-link" href="#">Welcome</a>
+      </li>
+
+      {% else %}
+
+      <li class="nav-item">
+        <a class="nav-link" href="/login">Login</a>
+      </li>
+
+      {% endif %}
+    </ul>
 	    </div>
 	  </div>
 	</nav>
